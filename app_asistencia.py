@@ -6,39 +6,42 @@ from openpyxl.styles import PatternFill
 
 # ─── Configuración de página ─────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Control de Asistencia",
-    page_icon="🕐",
+    page_title="Control de Asistencia · Insumos El Mayorista",
+    page_icon="🧵",
     layout="wide"
 )
 
 # ─── Estilos ──────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono&display=swap');
 
     html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; }
 
-    .stApp { background-color: #F7F8FA; }
+    .stApp { background-color: #F5F5F5; }
 
     .main-header {
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+        background: linear-gradient(135deg, #C0120C 0%, #8B0000 60%, #5a0000 100%);
         color: white;
         padding: 2rem 2.5rem;
         border-radius: 16px;
         margin-bottom: 2rem;
+        border-left: 6px solid #FF4444;
     }
-    .main-header h1 { margin: 0; font-size: 1.8rem; font-weight: 600; letter-spacing: -0.5px; }
-    .main-header p { margin: 0.4rem 0 0; opacity: 0.65; font-size: 0.9rem; }
+    .main-header h1 { margin: 0; font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; }
+    .main-header p { margin: 0.4rem 0 0; opacity: 0.75; font-size: 0.9rem; font-weight: 400; }
+    .main-header .brand { font-size: 0.78rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.3rem; }
 
     .metric-card {
         background: white;
         border-radius: 12px;
         padding: 1.2rem 1.5rem;
-        border: 1px solid #E8EAF0;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        border: 1px solid #E8E8E8;
+        border-top: 3px solid #C0120C;
+        box-shadow: 0 2px 8px rgba(192,18,12,0.08);
     }
     .metric-label { font-size: 0.78rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-    .metric-value { font-size: 2rem; font-weight: 600; color: #1a1a2e; font-family: 'DM Mono', monospace; }
+    .metric-value { font-size: 2rem; font-weight: 700; color: #1a1a1a; font-family: 'DM Mono', monospace; }
 
     .status-ok       { background: #C6EFCE; color: #276221; padding: 3px 10px; border-radius: 20px; font-size: 0.82rem; font-weight: 500; }
     .status-tarde    { background: #FFC7CE; color: #9C0006; padding: 3px 10px; border-radius: 20px; font-size: 0.82rem; font-weight: 500; }
@@ -47,28 +50,31 @@ st.markdown("""
     .status-inc      { background: #FFC7CE; color: #9C0006; padding: 3px 10px; border-radius: 20px; font-size: 0.82rem; font-weight: 500; }
 
     div[data-testid="stFileUploader"] {
-        border: 2px dashed #CBD0E0;
+        border: 2px dashed #C0120C;
         border-radius: 12px;
         background: white;
         padding: 1rem;
     }
     .stButton > button {
-        background: #0f3460;
+        background: #C0120C;
         color: white;
         border: none;
         border-radius: 8px;
         padding: 0.6rem 2rem;
         font-family: 'DM Sans', sans-serif;
-        font-weight: 500;
+        font-weight: 600;
         width: 100%;
         transition: background 0.2s;
     }
-    .stButton > button:hover { background: #16213e; }
+    .stButton > button:hover { background: #8B0000; }
 
     .download-btn > button {
         background: #276221 !important;
     }
     .download-btn > button:hover { background: #1a4016 !important; }
+
+    h3 { color: #C0120C !important; }
+    .stMultiSelect [data-baseweb="tag"] { background: #C0120C !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -164,7 +170,8 @@ def badge_estado(estado):
 
 st.markdown("""
 <div class="main-header">
-    <h1>🕐 Control de Asistencia</h1>
+    <div class="brand">🧵 Insumos El Mayorista</div>
+    <h1>Control de Asistencia</h1>
     <p>Talento Humano · Generación de informes automáticos</p>
 </div>
 """, unsafe_allow_html=True)
@@ -257,7 +264,7 @@ if "reporte" in st.session_state:
             font-size: 0.88rem;
         }}
         table.dataframe th {{
-            background: #1a1a2e; color: white;
+            background: #C0120C; color: white;
             padding: 10px 14px; text-align: left; font-weight: 500;
             font-size: 0.8rem; letter-spacing: 0.3px;
         }}
